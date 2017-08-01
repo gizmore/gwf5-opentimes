@@ -1,0 +1,25 @@
+{
+  "name": "GWF5 Open Times",
+  "homepage": "https://github.com/gizmore/gwf5-opentimes",
+  "authors": [
+    "gizmore <gizmore@wechall.net>"
+  ],
+  "description": "OpenTimes module for gwf5",
+  "main": "Module_OpenTimes.php",
+  "keywords": [
+    "gwf5",
+    "opentimes"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "opening_hours": "*"
+  }
+}
