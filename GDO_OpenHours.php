@@ -8,18 +8,37 @@ class GDO_OpenHours extends GDO_String
 
     public function render()
     {
-        return GWF_Template::mainPHP('form/open_hours.php', ['field' => $this]);
+        return GWF_Template::modulePHP('OpenTimes', 'form/open_hours.php', ['field' => $this]);
     }
     
-    public function isOpen(string $date=null)
+    public function isOpen(int $time=null)
     {
-        $date = $date === null ? GWF_Time::getDate() : $date;
-        
+        $time = $time === null ? time() : $time;
+        $oh = $this->getGDOValue();
+        $oh->isOpen($time);
     }
     
     public function initJSON()
     {
-        return $this->getGDOValue();
+        return $this->getValue();
     }
     
+    public function getGDOValue()
+    {
+        return new GWF_OpenHours($this->getValue());
+    }
+    
+    public function validate($value)
+    {
+        if (!parent::validate($value))
+        {
+            return false;
+        }
+        if ($value === null)
+        {
+            return true;
+        }
+        $ot = new GWF_OpenHours($value);
+        return $ot->isOpen() !== null;
+    }
 }
